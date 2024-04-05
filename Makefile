@@ -5,7 +5,9 @@ SUBDIRS = \
     mupen64plus-audio-sdl \
     mupen64plus-input-sdl \
     mupen64plus-ui-console \
-    mupen64plus-video-glide64mk2
+    mupen64plus-video-gles2n64
+    #mupen64plus-video-rice
+    #mupen64plus-video-glide64mk2
 
 export OSD=0
 export HIRES=0
@@ -38,11 +40,11 @@ all:
 	cp mupen64plus-rsp-hle/projects/unix/mupen64plus-rsp-hle.so $(RELEASE)
 	cp mupen64plus-audio-sdl/projects/unix/mupen64plus-audio-sdl.so $(RELEASE)
 	cp mupen64plus-input-sdl/projects/unix/mupen64plus-input-sdl.so $(RELEASE)
-	cp mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so $(RELEASE)
+	cp mupen64plus-video-gles2n64/projects/unix/mupen64plus-video-n64.so $(RELEASE)
 	cp -a mupen64plus-core/data/* $(RELEASE)
 	cp -a mupen64plus-input-sdl/data/* $(RELEASE)
 	cp -a mupen64plus-ui-console/data/* $(RELEASE)
-	cp -a mupen64plus-video-glide64mk2/data/* $(RELEASE)
+	cp -a mupen64plus-video-gles2n64/data/* $(RELEASE)
 
 .PHONY: clean
 clean:

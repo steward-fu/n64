@@ -216,7 +216,7 @@ ifeq ($(PREFIX),)
   PREFIX := /usr/local
 endif
 ifeq ($(LIBDIR),)
-  LIBDIR := $(PREFIX)/lib
+  LIBDIR := .
 endif
 ifeq ($(BINDIR),)
   BINDIR := $(PREFIX)/bin

@@ -1,3 +1,12 @@
+RELEASE = mupen64plus
+SUBDIRS = \
+    mupen64plus-core \
+    mupen64plus-rsp-hle \
+    mupen64plus-audio-sdl \
+    mupen64plus-input-sdl \
+    mupen64plus-ui-console \
+    mupen64plus-video-glide64mk2
+
 ifeq ($(MOD),mmiyoo)
     export PATH=/opt/mmiyoo/bin:$(shell printenv PATH)
     export HOST_CPU=arm-linux
@@ -8,20 +17,12 @@ ifeq ($(MOD),mmiyoo)
     export USE_GLES=1
     export PKG_CONFIG=/opt/mmiyoo/bin/pkg-config
     export SDL_CONFIG=/opt/mmiyoo/arm-buildroot-linux-gnueabihf/sysroot/usr/bin/sdl2-config
+    $(shell cp -a assets/mmiyoo/* $(RELEASE))
 else
     export OSD=0
     export VULKAN=0
     export USE_GLES=1
 endif
-
-RELEASE = release
-SUBDIRS = \
-    mupen64plus-core \
-    mupen64plus-rsp-hle \
-    mupen64plus-audio-sdl \
-    mupen64plus-input-sdl \
-    mupen64plus-ui-console \
-    mupen64plus-video-glide64mk2
 
 define FOREACH
     for DIR in $(SUBDIRS); do \
@@ -31,7 +32,6 @@ endef
 
 .PHONY: all
 all:
-	mkdir -p $(RELEASE)
 	$(call FOREACH,all)
 	cp mupen64plus-ui-console/projects/unix/mupen64plus $(RELEASE)
 	cp mupen64plus-core/projects/unix/libmupen64plus.so.2* $(RELEASE)
@@ -48,3 +48,4 @@ all:
 clean:
 	rm -rf $(RELEASE)
 	$(call FOREACH,clean)
+	mkdir -p $(RELEASE)/lib

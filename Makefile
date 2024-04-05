@@ -20,7 +20,11 @@ ifeq ($(MOD),mmiyoo)
     export PATH=/opt/mmiyoo/bin:$(shell printenv PATH)
     export HOST_CPU=arm-linux
     export CROSS_COMPILE=arm-linux-gnueabihf-
+    export VFP=1
     export NEON=1
+    export CRC_OPT=1
+    export VEC4_OPT=1
+    export TRIBUFFER_OPT=1
     export PKG_CONFIG=/opt/mmiyoo/bin/pkg-config
     export SDL_CONFIG=/opt/mmiyoo/arm-buildroot-linux-gnueabihf/sysroot/usr/bin/sdl2-config
     $(shell cp -a assets/mmiyoo/* $(RELEASE))

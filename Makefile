@@ -25,9 +25,16 @@ ifeq ($(MOD),mmiyoo)
     export CRC_OPT=1
     export VEC4_OPT=1
     export TRIBUFFER_OPT=1
+    export GLES_LIB=libGLESv2.so
     export PKG_CONFIG=/opt/mmiyoo/bin/pkg-config
     export SDL_CONFIG=/opt/mmiyoo/arm-buildroot-linux-gnueabihf/sysroot/usr/bin/sdl2-config
     $(shell cp -a assets/mmiyoo/* $(RELEASE))
+    $(shell ln -s ../../../assets/mmiyoo/lib/libGLESv2.so mupen64plus-core/projects/unix/libGLESv2.so)
+    $(shell ln -s ../../../assets/mmiyoo/lib/libGLESv2.so mupen64plus-video-gles2n64/projects/unix/libGLESv2.so)
+    $(shell ln -s ../../../assets/mmiyoo/lib/libGLESv2.so mupen64plus-video-rice/projects/unix/libGLESv2.so)
+    $(shell ln -s ../../../assets/mmiyoo/lib/libGLESv2.so mupen64plus-video-glide64mk2/projects/unix/libGLESv2.so)
+else
+    export GLES_LIB=-lGLESv2
 endif
 
 define FOREACH
@@ -55,3 +62,4 @@ clean:
 	rm -rf $(RELEASE)
 	$(call FOREACH,clean)
 	mkdir -p $(RELEASE)/lib
+	$(shell rm -rf mupen64plus-*/projects/unix/libGLESv2.so)

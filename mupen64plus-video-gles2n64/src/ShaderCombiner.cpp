@@ -126,10 +126,11 @@ const char *_vert = "                                       \n"\
 "varying lowp vec4 		vShadeColor;                        \n"\
 "varying mediump vec2 	vTexCoord0;                         \n"\
 "varying mediump vec2 	vTexCoord1;                         \n"\
-"                                                           \n"\
 "void main()                                                \n"\
 "{                                                          \n"\
-"gl_Position = aPosition;                                   \n"\
+"const float rad = 270.0 * (3.1415 * 2.0) / 360.0;          \n"\
+"mat4 rotate = mat4(cos(rad), -sin(rad), 0.0, 0.0, sin(rad), cos(rad), 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0); \n"\
+"gl_Position = rotate * aPosition;                          \n"\
 "vShadeColor = aColor;                                      \n"\
 "                                                           \n"\
 "if (uRenderState == 1.0)                                   \n"\
